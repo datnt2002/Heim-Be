@@ -1,0 +1,1 @@
+export type NodeEnvironment = 'local' | 'development' | 'staging' | 'production'
