@@ -1,4 +1,5 @@
-import { NodeEnvironment } from "../interfaces/commom";
+import 'dotenv/config'
+import { NodeEnvironment } from '../interfaces/common'
 
 const currentEnv = process.env.NODE_ENV as NodeEnvironment
 
