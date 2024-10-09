@@ -6,6 +6,15 @@ const currentEnv = process.env.NODE_ENV as NodeEnvironment
 export const envConfig = {
     env: process.env.NODE_ENV,
     port: process.env.PORT,
+    db: {
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        dbName: process.env.DB_NAME,
+    },
 }
 
-export default { ...envConfig }
+const mongoConnection = {
+    local: process.env.LOCAL_DB_CONNECTION,
+}[currentEnv]
+
+export default { ...envConfig, mongoConnection }
