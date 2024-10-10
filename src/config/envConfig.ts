@@ -15,6 +15,9 @@ export const envConfig = {
 
 const mongoConnection = {
     local: process.env.LOCAL_DB_CONNECTION,
+    development: '',
+    staging: '',
+    production: '',
 }[currentEnv]
 
 export default { ...envConfig, mongoConnection }
