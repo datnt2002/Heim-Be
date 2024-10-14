@@ -1,7 +1,7 @@
 import express from 'express'
-import envConfig from '../config/envConfig'
 import { default as docsRoute } from './doc.route'
 import { default as authRoute } from './auth.route'
+import { envConfig } from '../config/envConfig'
 const router = express.Router()
 
 const defaultRoutes = [

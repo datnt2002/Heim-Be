@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
-import envConfig from '../config/envConfig'
+import { envConfig, mongoConnection } from '../config/envConfig'
 
 export default async function () {
-    mongoose.connect(envConfig.mongoConnection as string, {
+    mongoose.connect(mongoConnection as string, {
         dbName: envConfig.db.dbName,
     })
 

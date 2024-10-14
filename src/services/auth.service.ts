@@ -9,8 +9,10 @@ const createUser = async (body: RegisterRequestBody) => {
     const user = await userModel.findOne({ email })
 
     if (user) {
+        console.log('ahah')
+
         throw new ApiError(
-            StatusCodes.BAD_REQUEST,
+            StatusCodes.CONFLICT,
             ERROR_MESSAGES.USER_ALREADY_EXISTS
         )
     }
