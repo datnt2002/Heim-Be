@@ -9,7 +9,9 @@
         "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
         "lint:check": "eslint .",
         "lint:fix": "eslint --fix .",
-        "typecheck": "tsc --noEmit"
+        "typecheck": "tsc --noEmit",
+        "prepare": "husky",
+        "pre-commit": "lint-staged"
     },
     "keywords": [],
     "author": "",
@@ -25,6 +27,7 @@
         "mongoose": "^8.7.1"
     },
     "devDependencies": {
+        "@eslint/js": "^9.12.0",
         "@types/bcrypt": "^5.0.2",
         "@types/cors": "^2.8.17",
         "@types/express": "^5.0.0",
@@ -33,9 +36,13 @@
         "@typescript-eslint/parser": "^8.8.0",
         "eslint": "^9.11.1",
         "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-react": "^7.37.1",
         "globals": "^15.10.0",
+        "husky": "^9.1.6",
+        "lint-staged": "^15.2.10",
         "prettier": "^3.3.3",
         "ts-node-dev": "^2.0.0",
-        "typescript": "^5.6.2"
+        "typescript": "^5.6.2",
+        "typescript-eslint": "^8.9.0"
     }
 }
