@@ -5,11 +5,12 @@ import mongoInit from './libs/mongoInit'
 import router from './routes'
 import { envConfig } from './config/envConfig'
 import errorHandler from './middlewares/errorHandler'
+import requestHandler from './middlewares/requestHandler'
 
 export let server: Server
 const bootstrap = () => {
     const app: Application = express()
-    app.use(express.json())
+    app.use(requestHandler())
 
     app.get('/', (_req: Request, res: Response) => {
         res.send('Welcome to application')
