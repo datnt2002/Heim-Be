@@ -17,4 +17,17 @@ const register = async (req: Request, res: Response) => {
     )
 }
 
-export { register }
+const login = async (req: Request, res: Response) => {
+    const data = await authService.createUser(req.body)
+
+    res.status(StatusCodes.OK).json(
+        formatResponse(
+            StatusCodes.CREATED,
+            false,
+            RESPONSE_MESSAGES.REGISTER_SUCCESSFULLY,
+            data
+        )
+    )
+}
+
+export { register, login }
