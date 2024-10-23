@@ -24,7 +24,7 @@ const login = async (req: Request, res: Response) => {
         formatResponse(
             StatusCodes.CREATED,
             false,
-            RESPONSE_MESSAGES.REGISTER_SUCCESSFULLY,
+            RESPONSE_MESSAGES.LOGIN_SUCCESSFULLY,
             data
         )
     )
