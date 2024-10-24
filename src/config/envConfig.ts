@@ -11,6 +11,11 @@ export const envConfig = {
         password: process.env.DB_PASSWORD,
         dbName: process.env.DB_NAME,
     },
+    jwt: {
+        secret: process.env.JWT_SECRET,
+        refreshExpirationDays: 30,
+        accessExpirationMinutes: 180,
+    },
 }
 
 export const mongoConnection = {

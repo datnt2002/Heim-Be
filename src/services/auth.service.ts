@@ -2,10 +2,19 @@ import { findByUsernameOrEmail } from './../repository/repository'
 import { ERROR_MESSAGES } from '../constants/error'
 import ApiError from '../utils/APIError'
 import userModel from '../models/user.model'
-import { LoginRequestBody, RegisterRequestBody } from '../types/user.type'
+import {
+    IUser,
+    LoginRequestBody,
+    RegisterRequestBody,
+} from '../types/user.type'
 import { StatusCodes } from 'http-status-codes'
 import { compareSync } from 'bcrypt'
 import { generateToken } from '../utils/jwtUtils'
+
+const excludeSensitiveFields = (user: IUser) => {
+    const { password, ...userWithoutSensitiveFields } = user
+    return userWithoutSensitiveFields
+}
 
 const createUser = async (body: RegisterRequestBody) => {
     const { email, username } = body
@@ -22,7 +31,7 @@ const createUser = async (body: RegisterRequestBody) => {
         ...body,
     })
 
-    return result
+    return { user: excludeSensitiveFields(result) }
 }
 
 const login = async (body: LoginRequestBody) => {
@@ -35,9 +44,9 @@ const login = async (body: LoginRequestBody) => {
             ERROR_MESSAGES.WRONG_USERNAME_OR_EMAIL
         )
 
-    const token = generateToken(user.username)
+    const token = generateToken(user._id)
 
-    return { user, token }
+    return { user: excludeSensitiveFields(user), ...token }
 }
 
 export { createUser, login }
