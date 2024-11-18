@@ -10,7 +10,7 @@ const generateSession = (
     secret = envConfig.jwt.secret as string
 ) => {
     const payload = {
-        sub: userId,
+        userId: userId,
         iat: moment().unix(),
         exp: expires.unix(),
         type,

@@ -3,6 +3,7 @@ import { authController } from '../controllers'
 import wrapError from '../utils/wrapError'
 import validate from '../middlewares/validateHandler'
 import { login, register } from '../validations/auth.validation'
+import AuthHandler from '../middlewares/authHandler'
 
 const userRouter = express.Router()
 
@@ -12,5 +13,6 @@ userRouter
 userRouter
     .route('/login')
     .post(validate(login), wrapError(authController.login))
+userRouter.route('/me').get(AuthHandler, wrapError(authController.getMyProfile))
 
 export default userRouter
