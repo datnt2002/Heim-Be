@@ -38,16 +38,16 @@ const login = async (req: Request, res: Response) => {
 }
 
 const getMyProfile = async (req: Request, res: Response) => {
-    // const data = await authService.login(req.body)
-    // console.log(req)
-    // res.status(StatusCodes.OK).json(
-    //     formatResponse(
-    //         StatusCodes.OK,
-    //         false,
-    //         RESPONSE_MESSAGES.LOGIN_SUCCESSFULLY,
-    //         // data.user
-    //     )
-    // )
+    const data = await authService.getMyProfile(req.userId)
+    console.log(data)
+    res.status(StatusCodes.OK).json(
+        formatResponse(
+            StatusCodes.OK,
+            false,
+            RESPONSE_MESSAGES.LOGIN_SUCCESSFULLY,
+            data
+        )
+    )
 }
 
 export { register, login, getMyProfile }

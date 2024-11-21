@@ -7,9 +7,10 @@ import {
     LoginRequestBody,
     RegisterRequestBody,
 } from '../types/user.type'
-import { StatusCodes } from 'http-status-codes'
+import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import { compareSync } from 'bcrypt'
 import { generateToken } from '../utils/jwtUtils'
+import mongoose from 'mongoose'
 
 const excludeSensitiveFields = (user: IUser) => {
     const { password, ...userWithoutSensitiveFields } = user
@@ -49,4 +50,16 @@ const login = async (body: LoginRequestBody) => {
     return { user: excludeSensitiveFields(user), ...token }
 }
 
-export { createUser, login }
+const getMyProfile = async (userId?: mongoose.Types.ObjectId) => {
+    if (!userId)
+        throw new ApiError(StatusCodes.BAD_REQUEST, ReasonPhrases.BAD_REQUEST)
+    const userProfile = await userModel.findById(userId)
+
+    if (!userProfile) {
+        throw new ApiError(StatusCodes.UNAUTHORIZED, ReasonPhrases.UNAUTHORIZED)
+    }
+
+    return userProfile
+}
+
+export { createUser, login, getMyProfile }

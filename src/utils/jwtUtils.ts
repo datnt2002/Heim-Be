@@ -3,13 +3,20 @@ import jwt from 'jsonwebtoken'
 import moment, { Moment } from 'moment'
 import mongoose from 'mongoose'
 
+export interface CustomJwtPayload {
+    userId: mongoose.Types.ObjectId
+    iat: number
+    exp: number
+    type: 'access' | 'refresh'
+}
+
 const generateSession = (
     userId: mongoose.Types.ObjectId,
     expires: Moment,
     type: 'access' | 'refresh',
     secret = envConfig.jwt.secret as string
 ) => {
-    const payload = {
+    const payload: CustomJwtPayload = {
         userId: userId,
         iat: moment().unix(),
         exp: expires.unix(),

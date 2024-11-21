@@ -13,6 +13,8 @@ userRouter
 userRouter
     .route('/login')
     .post(validate(login), wrapError(authController.login))
-userRouter.route('/me').get(AuthHandler, wrapError(authController.getMyProfile))
+userRouter
+    .route('/profile')
+    .get(AuthHandler, wrapError(authController.getMyProfile))
 
 export default userRouter
